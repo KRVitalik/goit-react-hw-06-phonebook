@@ -8,20 +8,17 @@ import { Container } from "./App.styled";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from "react-redux";
-import { deleteContact, filteredContact, setContacts } from "store/contactSlice";
+import { filteredContact, setContacts } from "store/contactSlice";
 
 const App = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const contacts = useSelector(state => state.myContact.contacts)
-  const filter = useSelector(state => state.myContact.filter)
   const dispatch = useDispatch()
 
-  const checkName = (e) => {
-    return contacts.some(contact =>
-      contact.name.toLowerCase() === e.target.value)
-  };
+  const checkName = (e) => contacts.some(contact =>
+      contact.name.toLowerCase() === e.target.value);
     
   const handleInputChange = e => {
     e.target.name === "name"
@@ -54,17 +51,6 @@ const App = () => {
 
     e.target.reset()
   };
-
-  const contactDelete = (id) => {
-    dispatch(deleteContact(id))
-    toast.warn(`You deleted contact ${name} from your phonebook.`, {
-      position: toast.POSITION.TOP_CENTER
-    });
-  };
-  
-  const filteredContacts = () => contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
   
   return (
     <Container>
@@ -73,9 +59,7 @@ const App = () => {
         handleInputChange={handleInputChange} />
       <h2>Contacts</h2>
       <Filter handleInputChange={handleInputChange} />
-      <ContactList
-        contacts={filteredContacts()}
-        contactDelete={contactDelete} />
+      <ContactList/>
       <ToastContainer />
     </Container>
   );
