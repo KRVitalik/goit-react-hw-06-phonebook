@@ -31,7 +31,7 @@ const ContactList = () => {
                         <Number> : {contact.number}</Number>
                     </ContactInfo>
                     <ButtonDelete onClick={() => contactDelete(id)}>delete</ButtonDelete></Contact>
-            })};
+            })}
         </List></>
     );
 };
