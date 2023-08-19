@@ -1,10 +1,9 @@
 import React from "react";
-import { Contact, List, ButtonDelete, ContactInfo, Number, Name } from "./ContactList.styled";
-import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { deleteContact } from "store/contactSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { Contact, List, ButtonDelete, ContactInfo, Number, Name } from "./ContactList.styled";
 
 const ContactList = () => {
     const contacts = useSelector(state => state.myContact.contacts);
@@ -32,15 +31,9 @@ const ContactList = () => {
                         <Number> : {contact.number}</Number>
                     </ContactInfo>
                     <ButtonDelete onClick={() => contactDelete(id)}>delete</ButtonDelete></Contact>
-            }
-            )}
+            })};
         </List></>
     );
 };
-
-ContactList.propTypes = {
-    contacts: PropTypes.array,
-    contactDelete: PropTypes.func,
-}
  
 export default ContactList;
